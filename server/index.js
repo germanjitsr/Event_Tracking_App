@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require ('cors')
 const mysql = require('mysql')
+const PORT = 5000
 
 //Database Configuration
 const db= mysql.createPool({
@@ -327,6 +328,10 @@ app.get('/viewEventForAllPerson', (req, res)=>{
 // app.listen(3001, ()=>{
 //     console.log("running on port 3001")
 // }) 
+if (process.env.NODE_ENV == 'production'){
+    app.use(express.static('client/build')) //push front end react app into production
+}
+
 app.listen(process.env.PORT || PORT, ()=>{
-        console.log("server running ")
+        console.log("server running on " + PORT)
     }) 
