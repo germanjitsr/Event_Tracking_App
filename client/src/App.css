@@ -1,0 +1,56 @@
+.list{
+    list-style: none;
+    outline-style:groove;
+    display:table-cell;
+    grid-row: auto;
+    color:cadetblue;
+    background-color: cadetblue;
+    border: chocolate;
+    margin-top: 6px;
+    max-width:fit-content;
+    margin-left: 4px;
+}
+
+.list3 {
+    position: absolute;
+    display:inline;
+    columns: 2;
+    background-color: coral;
+    grid-row: auto;
+    color:cadetblue;
+}
+
+/* .rowC{display:flex; flex-direction:row;} */
+
+.Delete{
+    margin-left: 5px;
+    margin-right: 5px;
+    color:firebrick;
+    background-color: firebrick;
+    caret-color: firebrick;
+}
+
+.dropdown{
+    height: 20 px;
+    width: 150px;
+    scrollbar-track-color:coral;
+    background-color: lightskyblue;
+}
+
+.Navs2{
+    margin-top: 6px;
+}
+
+.Navs1{
+    background-color: powderblue;
+}
+:root {
+    background-color:azure;
+    border: 10px
+}
+
+.Appointments {
+    place-content: right;
+    align-self: center;
+    justify-content: right;
+}
