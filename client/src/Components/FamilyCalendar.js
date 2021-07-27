@@ -26,8 +26,8 @@ export const FamilyCalendar = () => {
         <div>
             <Calendar onChange={handleChange} value = {date}></Calendar>
 
-
-            <p>On {date.toDateString()}, The appointment(s) are:</p>
+            <h6> </h6>
+            <h6>Please click on any date to see if there is any appointment!</h6>
                         <ListGroup >
                             <ListGroupItem variant = "success" className ="list3">
                                 {list}

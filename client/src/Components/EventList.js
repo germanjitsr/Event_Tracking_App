@@ -20,6 +20,7 @@ export const EventList = () => {
 
     return (
         <React.Fragment>
+            <h7>List of all family appointments</h7>
                     <ListGroup variant = "flush">
                         <ListGroupItem className ="list">{list}
                         </ListGroupItem>        

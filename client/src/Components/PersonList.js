@@ -19,6 +19,7 @@ export const PersonList = () => {
     
     return (
             <React.Fragment>
+                <h7>List of Family Members</h7>
                     <ListGroup variant = "flush">
                         <ListGroupItem className ="list">{list}
                         </ListGroupItem>        
