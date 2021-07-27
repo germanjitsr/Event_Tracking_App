@@ -13,8 +13,7 @@ export const Home = () => {
                     <HeadingPerson />
                     <PersonList />
                     <HeadingEvents />
-                    <EventList />
-                    
+                    <EventList />       
         </>
     )
 }

@@ -16,7 +16,6 @@ export const EditPerson = () => {
         //for list
         useEffect(()=>{
             Axios.get('http://localhost:3001/view').then((response)=>{
-                //console.log(response.data)
                 setPeopleList(response.data)
             })
         },[])
@@ -32,7 +31,6 @@ export const EditPerson = () => {
         const [sex1, setSex1] = useState(options.label) //ge  state of dropdown value
 
         const handleChange = e =>{
-            //setFrstName(e.label) 
                 //for filling up form
             Axios.get('http://localhost:3001/view1', { params: { first_name: (e.label)}}).then((response)=>{
             console.log(response.data[0].first_name)
@@ -45,7 +43,6 @@ export const EditPerson = () => {
         }
 
         const deletePerson = (e) => {
-            //alert(frstName)
             if(window.confirm('Are you sure?')){
                 Axios.delete('http://localhost:3001/delete/'+frstName, { data: { "first_name": {frstName}}} , {headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +52,6 @@ export const EditPerson = () => {
         }
 
         //to get values from text boxes while updating record
-        const [person_id, setPersonID] = useState("")
         const [firstName, setFirstName] = useState("")
         const [lastName, setLastName] = useState("")
         const [age, setAge] = useState("")
@@ -70,7 +66,6 @@ export const EditPerson = () => {
         }
         
         const updatePerson = (e) => {
-            //alert(prsonID)
             if (dataUpdate.first_name=='') 
             {
                 dataUpdate.first_name=frstName
@@ -130,7 +125,6 @@ export const EditPerson = () => {
                             onChange={(e)=>{
                                 setSex1(e.label)
                                 setSex(e.label)
-                                //setSex(e.label)
                             }}
                             options={optionsGender} />
                     </div>

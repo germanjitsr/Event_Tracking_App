@@ -127,7 +127,6 @@ export const AddCalendar = () => {
                     </div>
            </FormGroup>
            <Button type="button" color="primary" onClick={updateCalendar}>Add to Calendar</Button>
-           {/* <Button color="danger" className= "Delete" onClick={deleteEvent}>Delete</Button> */}
            <Link to="/" className="btn btn-danger ml-2">Cancel</Link>
        </Form>
     )

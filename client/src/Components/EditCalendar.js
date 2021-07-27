@@ -7,7 +7,6 @@ import {
     FormGroup,
     Label,
     Input,
-    Button,
     ListGroupItem
 } from 'reactstrap'
 
@@ -57,46 +56,11 @@ export const EditCalendar = () => {
             })        
         }
 
-        // const listPersonID= peopleList2.map((val => {
-        //     return <li key={val.person_id}>{val.person_id}</li>
-        // }))
-        // const listFirstName = peopleList2.map(d => ({
-        //     "value" : d.first_name,
-        //     "label" : d.first_name
-        //   }))
-
         const listFirstName= peopleList2.map((val => {
             return <li key={val.first_name}>{val.first_name}</li>
         }))
   /// For person list ends
   
-  //Edit Calender
-
-   ///to get values from text boxes while updating record
-//    const [person_id, setPersonID] = useState("")
-
-//    var dataUpdate = {
-//        event_id: evntID, 
-//        event_date: evntDate,
-//        person_id: listPersonID
-//    }
-//    const url = 'http://localhost:3001/EditC'
-//    const headers = {'Content-Type': 'application/json'}
-//    const editCalendar = () => {
-//        console.log("going for put")
-
-//        Axios.put(url, dataUpdate, headers).then(function(d){
-//            console.log(JSON.stringify(d.data))
-//             // if (d.data === 'ER_DUP_ENTRY') {
-//             //     alert('Sorry ' + frstName + ' is booked for that day! Checkout his Calendar.')
-//             // }
-//             // else {
-//             //     alert('The Calendar for ' + frstName + ' has been updated successfully')
-//             // }
-//         })
-//     window.location.reload()   
-//     }  
-
    return (
        <Form>
            <Input type="hidden" placeholder="" value={evntID}></Input>
@@ -115,17 +79,9 @@ export const EditCalendar = () => {
                <Label>Event Date</Label>
                <Input type="date" placeholder="Event date" value={evntDate}//from handleChange
                    ></Input>
-                {/* <Input type="hidden" placeholder="" value={listPersonID}></Input> */}
                 <Label>Who will be attending this event?</Label>
-                    {/* <div >
-                        <Select
-                            //value="" 
-                            options={listFirstName} />
-                    </div> */}
                      <ListGroupItem className ="list1">{listFirstName}</ListGroupItem>
            </FormGroup>
-           {/* <Button type="button" color="primary" onClick={editCalendar}>Update Attendees?</Button> */}
-           {/* <Button color="danger" className= "Delete" onClick={deleteCalendar}>Delete</Button> */}
            <Link to="/" className="btn btn-danger ml-2">Back to main page</Link>
        </Form>
     )

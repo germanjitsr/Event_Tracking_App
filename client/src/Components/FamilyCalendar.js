@@ -14,12 +14,7 @@ export const FamilyCalendar = () => {
    const handleChange = (date) =>{
         setDate(date)
        Axios.get('http://localhost:3001/view2E', { params: { event_date: (date)}}).then((response)=>{
-        //    setEvntID(response.data[0].event_id)
-        //    const date = (response.data[0].event_date).slice(0,10);    
-        //    setEvntName(response.data[0].event_name)
-        //    setEvntDate(date)
         setEventList(response.data)
-           //handleChangePerson(response.data[0].event_id)
         })      
    }
 
@@ -36,14 +31,6 @@ export const FamilyCalendar = () => {
                         <ListGroup >
                             <ListGroupItem variant = "success" className ="list3">
                                 {list}
-                                {/* {(() => {
-                                    if ({list}.length >0) {
-                                        list
-                                    }
-                                    else {
-                                        <p>No appointments for anyone!</p>
-                                    }
-                                })} */}
                             </ListGroupItem>        
                         </ListGroup>
         </div>

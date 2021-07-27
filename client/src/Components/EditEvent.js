@@ -41,7 +41,6 @@ export const EditEvent = () => {
     }
 
     //to get values from text boxes while updating record
-    //const [person_id, setPersonID] = useState("")
     const [eventName, setEventName] = useState("")
     const [eventDate, setEventDate] = useState("")
 
@@ -51,7 +50,6 @@ export const EditEvent = () => {
         event_date: eventDate
     }
     const updateEvent = (e) => {
-        //alert(prsonID)
         if (dataUpdate.event_name==='') 
         {
             dataUpdate.event_name=evntName
@@ -66,7 +64,6 @@ export const EditEvent = () => {
     }
 
     const deleteEvent = (e) => {
-        //alert(frstName)
         if(window.confirm('Are you sure?')){
             Axios.delete('http://localhost:3001/deleteE/'+evntName, { data: { "event_name": {evntName}}} , {headers: {
             'Content-Type': 'application/json'

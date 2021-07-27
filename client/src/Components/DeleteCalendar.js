@@ -68,9 +68,6 @@ export const DeleteCalendar = () => {
             "label" : d.first_name
           }))
 
-        // const listFirstName= peopleList2.map((val => {
-        //     return <li key={val.first_name}>{val.first_name}</li>
-        // }))
   /// For person list ends
   
   //Delete Calender
@@ -114,10 +111,8 @@ export const DeleteCalendar = () => {
                             onChange={(e)=>{setPersonName(e.label)}}
                             options={listFirstName} />
                     </div>
-                     {/* <ListGroupItem className ="list1">{listFirstName}</ListGroupItem> */}
            </FormGroup>
            <Button type="button" color="primary" onClick={deleteCalendar}>Cancel Appointment</Button>
-           {/* <Button color="danger" className= "Delete" onClick={deleteCalendar}>Delete</Button> */}
            <Link to="/" className="btn btn-danger ml-2">Back</Link>
        </Form>
     )

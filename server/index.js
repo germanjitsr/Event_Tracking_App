@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const cors = require ('cors')
 const mysql = require('mysql')
-const bodyParser = require ('body-parser')
 
 const db= mysql.createPool({
     host: 'localhost',
@@ -30,12 +29,12 @@ app.get('/view', (req, res)=>{
 
 //get for particular person
 app.get('/view1', (req, res)=>{
-    console.log("in View1")
+    //console.log("in View1")
     const firstname = req.query.first_name
-    console.log(firstname)
+    //console.log(firstname)
     const sqlSelect = "SELECT * FROM person where first_name=?"
     db.query(sqlSelect, firstname, (err, result)=>{
-        console.log("result in view1 " + result.length)
+        //console.log("result in view1 " + result.length)
         res.send(result)
     })
 })
@@ -51,11 +50,11 @@ app.post("/add", (req,res)=>{
             //console.log(result.length)
                 if (result.length > 0) {
                     personID = (result[0].person_id)
-                    console.log("person ID retrieved from DB " + personID)
+                    //console.log("person ID retrieved from DB " + personID)
                     resolve(personID)
                 }
                 else {
-                    console.log("This is the first  record")
+                    //console.log("This is the first  record")
                     personID = 0
                     resolve(personID)
                 }
@@ -69,7 +68,7 @@ app.post("/add", (req,res)=>{
             if (personid == undefined) {
                 personid = 0
             }
-            console.log("personID from getMaxID " + personid)
+            //console.log("personID from getMaxID " + personid)
 
             const person_id = personid + 1
             const first_name = req.body.first_name
@@ -77,7 +76,7 @@ app.post("/add", (req,res)=>{
             const age = req.body.age
             const sex = req.body.sex
 
-            console.log("Before insert, person ID = " + person_id)
+            //console.log("Before insert, person ID = " + person_id)
             const sqlInsert = "INSERT INTO person (person_id, first_name, last_name, age, sex) VALUES (?,?,?,?,?)"
             db.query(sqlInsert, [person_id, first_name, last_name, age, sex], (err, result)=>{
                 console.log(result)
@@ -88,9 +87,9 @@ app.post("/add", (req,res)=>{
 
     //delete user
     app.delete('/delete/:first_name', (req,res)=> {
-        console.log("In Delete")
+        //console.log("In Delete")
         //console.log(req)
-        console.log(req.params)
+        //console.log(req.params)
         const fname = req.params.first_name
         const sqlDelete = "DELETE FROM person where first_name = ?"
 
@@ -101,9 +100,9 @@ app.post("/add", (req,res)=>{
 
     //update Person
     app.put('/update', (req,res)=> {
-        console.log("In Update")
-        //console.log(req)
-        console.log(req.body)
+        //console.log("In Update")
+        ////console.log(req)
+        //console.log(req.body)
         const person_id = req.body.person_id
         const first_name = req.body.first_name
         const last_name = req.body.last_name
@@ -132,33 +131,33 @@ app.get('/viewE', (req, res)=>{
 
 //get for particular event
 app.get('/view1E', (req, res)=>{
-    console.log("in View1E")
+    //console.log("in View1E")
     const event_name = req.query.event_name
-    console.log(event_name)
+    //console.log(event_name)
     const sqlSelect = "SELECT * FROM EVENTS where event_name=?"
     db.query(sqlSelect, event_name, (err, result)=>{
-        console.log("result length in view1E = " + result.length)
+        //console.log("result length in view1E = " + result.length)
         res.send(result)
     })
 })
 
 //get for particular event
 app.get('/view2E', (req, res)=>{
-    console.log("in View2E")
+    //console.log("in View2E")
     const event_date = (req.query.event_date).slice(0,10)
-    console.log(event_date)
+    //console.log(event_date)
     const sqlSelect = "SELECT * FROM EVENTS where event_date=?"
     db.query(sqlSelect, event_date, (err, result)=>{
-        console.log("result length in view1E = " + result.length)
+        //console.log("result length in view1E = " + result.length)
         res.send(result)
     })
 })
 
  //update Event
  app.put('/updateE', (req,res)=> {
-    console.log("In UpdateE")
+    //console.log("In UpdateE")
     //console.log(req)
-    console.log(req.body)
+    //console.log(req.body)
     const event_id = req.body.event_id
     const event_name = req.body.event_name
     const event_date = req.body.event_date
@@ -167,57 +166,40 @@ app.get('/view2E', (req, res)=>{
 
     db.query(sqlUpdate, [event_name, event_date, event_id], (err, result) => {
         //if (err) console.log(err)
-        console.log(result)
+        //console.log(result)
     })
 })
 
 
  //delete event
  app.delete('/deleteE/:event_name', (req,res)=> {
-    console.log("In DeleteE")
+    //console.log("In DeleteE")
     //console.log(req)
-    console.log(req.params)
+    //console.log(req.params)
     const ename = req.params.event_name
     const sqlDelete = "DELETE FROM EVENTS where event_name = ?"
 
     db.query(sqlDelete, ename, (err, result) => {
-        if (err) console.log(err)
+        //if (err) console.log(err)
     })
 })
 
 //post for event
 app.post("/addE", (req,res)=>{
-    console.log("In addE")
-    console.log(req.body.first_name)
-    // function getIDPerson() {
-    //     return new Promise(resolve => {
-    //         const sqlGetID = "SELECT person_id FROM PERSON where first_name=?"
-    //         db.query(sqlGetID, req.body.first_name, (err, result)=>{
-    //         console.log("result from getIDPerson " + result)
-    //             if (result.length > 0) {
-    //                 personID = (result[0].person_id)
-    //                 console.log("person ID retrieved from DB " + personID)
-    //                 resolve(personID)
-    //             }
-    //             else {
-    //                 console.log("No Person ID found!!")
-    //             }
-    //         })
-    // })}
 
     function getMaxIdEvent() {
         return new Promise(resolve => {
-            console.log("In getMaxIdEvent")
+            //console.log("In getMaxIdEvent")
             const sqlGetMaxIDEvent = "SELECT * FROM EVENTS where event_id=(SELECT MAX(event_id) FROM EVENTS)"
             db.query(sqlGetMaxIDEvent, (err, result)=>{
-            console.log(result)
+            //console.log(result)
                 if (result.length > 0) {
                     eventID = (result[0].event_id)
-                    console.log("event ID retrieved from DB " + eventID)
+                    //console.log("event ID retrieved from DB " + eventID)
                     resolve(eventID)
                 }
                 else {
-                    console.log("This is the first  record")
+                    //console.log("This is the first  record")
                     eventID = 0
                     resolve(eventID)
                 }
@@ -225,20 +207,18 @@ app.post("/addE", (req,res)=>{
     })}
         
     async function sqlInsertEvent () {
-            console.log("In sqlInsertEvent")
+            //console.log("In sqlInsertEvent")
             const eventid = await getMaxIdEvent()
             if (eventid == undefined) {
                 eventid = 0
             }
-            console.log("eventid from getMaxID " + eventid)
+            //console.log("eventid from getMaxID " + eventid)
 
-            //const person_id = await getIDPerson()
             const event_id = eventid + 1
-            //const first_name = req.body.first_name
             const event_name = req.body.event_name
             const date = req.body.date
 
-            console.log("Before insert, Event ID = " + event_id)
+            //console.log("Before insert, Event ID = " + event_id)
             const sqlInsert = "INSERT INTO EVENTS (event_id, event_name, event_date) VALUES (?,?,?)"
             db.query(sqlInsert, [event_id, event_name, date], (err, result)=>{
                 console.log(result)
@@ -253,10 +233,10 @@ app.post("/addE", (req,res)=>{
 
 //post for Calendar
 app.post("/addC", (req,res)=>{
-    console.log("In addC")
+    //console.log("In addC")
         
     const sqlInsertCalendar = () => {
-            console.log("In sqlInsertCalendar")
+            //console.log("In sqlInsertCalendar")
             const c_event_id = req.body.event_id
             const c_person_id = req.body.person_id
             const c_event_date = req.body.event_date
@@ -265,13 +245,13 @@ app.post("/addC", (req,res)=>{
             db.query(sqlInsert, [c_event_id, c_event_date, c_person_id], (err, result)=>{
                     if (err) {
                             if (err.code === 'ER_DUP_ENTRY') {
-                            console.log("In DUP entry")
+                            //console.log("In DUP entry")
                             console.log(err.code)
                             res.send(err.code)
                             }
                     }
                     else {
-                        console.log("Success Calendar")
+                        //console.log("Success Calendar")
                         res.send(result)
                     }
             })
@@ -281,9 +261,9 @@ app.post("/addC", (req,res)=>{
 
  //update Event
  app.put('/EditC', (req,res)=> {
-    console.log("In EditC")
+    //console.log("In EditC")
     //console.log(req)
-    console.log(req.body)
+    //console.log(req.body)
     const c_event_id = req.body.event_id
     const c_new_person_id = req.body.person_id
     const c_event_date = req.body.event_date
@@ -298,13 +278,13 @@ app.post("/addC", (req,res)=>{
 
 //get for particular person list based on event ID
 app.get('/viewPersonPerEvent', (req, res)=>{
-    console.log("in viewPersonPerEvent")
+    //console.log("in viewPersonPerEvent")
     const c_event_id = req.query.c_event_id
-    console.log(c_event_id)
+    //console.log(c_event_id)
     const sqlSelect = "SELECT person_id, first_name from PERSON where person_id IN (SELECT c_person_id FROM CALENDAR where c_event_id =?)"
     const query = db.query(sqlSelect, c_event_id, (err, result)=>{
         //console.log(query.sql)
-        console.log(result)
+        //console.log(result)
         res.send(result)
     }
     )
@@ -313,13 +293,12 @@ app.get('/viewPersonPerEvent', (req, res)=>{
 
 //get for all event list based on person ID
 app.get('/viewEventForAllPerson', (req, res)=>{
-    console.log("in viewEventForAllPerson")
+    //console.log("in viewEventForAllPerson")
     const c_person_id = req.query.c_person_id
-    console.log(c_person_id)
+    //console.log(c_person_id)
     const sqlSelect = "SELECT * from CALENDAR where c_person_id =?)"
     const query = db.query(sqlSelect, c_person_id, (err, result)=>{
-        //console.log(query.sql)
-        console.log(result)
+        //console.log(result)
         res.send(result)
     }
     )
@@ -328,9 +307,9 @@ app.get('/viewEventForAllPerson', (req, res)=>{
 
  //delete event
  app.delete('/deleteC/:person_name', (req,res)=> {
-    console.log("In DeleteC")
+    //console.log("In DeleteC")
     //console.log(req)
-    console.log(req.params)
+    //console.log(req.params)
     const c_person_name = req.params.person_name
     const sqlDelete = "DELETE FROM CALENDAR where c_person_id = (SELECT person_id from PERSON where first_name=?)"
 
