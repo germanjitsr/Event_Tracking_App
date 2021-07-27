@@ -15,7 +15,7 @@ export const EditEvent = () => {
 
      //for list in Dropdown
      useEffect(()=>{
-        Axios.get('http://localhost:3001/viewE').then((response)=>{
+        Axios.get('https://eventtrackingapp.herokuapp.com/viewE').then((response)=>{
             //console.log(response.data)
             setEventList(response.data)
         })
@@ -32,7 +32,7 @@ export const EditEvent = () => {
     const handleChange = e =>{
         //setFrstName(e.label) 
             //for filling up form
-        Axios.get('http://localhost:3001/view1E', { params: { event_name: (e.label)}}).then((response)=>{
+        Axios.get('https://eventtrackingapp.herokuapp.com/view1E', { params: { event_name: (e.label)}}).then((response)=>{
             setEvntID(response.data[0].event_id)
             const date = (response.data[0].event_date).slice(0,10);    
             setEvntName(response.data[0].event_name)
@@ -59,13 +59,13 @@ export const EditEvent = () => {
             dataUpdate.event_date=evntDate
         }
 
-        Axios.put('http://localhost:3001/updateE', dataUpdate , {headers: {'Content-Type': 'application/json'}}).then(alert(evntName + ' updated sucessfully'))
+        Axios.put('https://eventtrackingapp.herokuapp.com/updateE', dataUpdate , {headers: {'Content-Type': 'application/json'}}).then(alert(evntName + ' updated sucessfully'))
         window.location.reload()     
     }
 
     const deleteEvent = (e) => {
         if(window.confirm('Are you sure?')){
-            Axios.delete('http://localhost:3001/deleteE/'+evntName, { data: { "event_name": {evntName}}} , {headers: {
+            Axios.delete('https://eventtrackingapp.herokuapp.com/deleteE/'+evntName, { data: { "event_name": {evntName}}} , {headers: {
             'Content-Type': 'application/json'
           }}).then(alert('Event ' + evntName + ' deleted sucessfully'))
         }

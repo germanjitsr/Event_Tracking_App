@@ -8,7 +8,7 @@ export const PersonList = () => {
     const [peopleList, setPeopleList] = useState([])
 
     useEffect(()=>{
-        Axios.get('http://localhost:3001/view').then((response)=>{
+        Axios.get('https://eventtrackingapp.herokuapp.com/view').then((response)=>{
             setPeopleList(response.data)
         })
     },[])

@@ -15,7 +15,7 @@ export const EditPerson = () => {
 
         //for list
         useEffect(()=>{
-            Axios.get('http://localhost:3001/view').then((response)=>{
+            Axios.get('https://eventtrackingapp.herokuapp.com/view').then((response)=>{
                 setPeopleList(response.data)
             })
         },[])
@@ -32,7 +32,7 @@ export const EditPerson = () => {
 
         const handleChange = e =>{
                 //for filling up form
-            Axios.get('http://localhost:3001/view1', { params: { first_name: (e.label)}}).then((response)=>{
+            Axios.get('https://eventtrackingapp.herokuapp.com/view1', { params: { first_name: (e.label)}}).then((response)=>{
             console.log(response.data[0].first_name)
             setPrsonID(response.data[0].person_id)    
             setFrstName(response.data[0].first_name)
@@ -44,7 +44,7 @@ export const EditPerson = () => {
 
         const deletePerson = (e) => {
             if(window.confirm('Are you sure?')){
-                Axios.delete('http://localhost:3001/delete/'+frstName, { data: { "first_name": {frstName}}} , {headers: {
+                Axios.delete('https://eventtrackingapp.herokuapp.com/delete/'+frstName, { data: { "first_name": {frstName}}} , {headers: {
                 'Content-Type': 'application/json'
               }}).then(alert(frstName + ' deleted sucessfully'))
             }
@@ -82,7 +82,7 @@ export const EditPerson = () => {
             {
                 dataUpdate.sex=sex1
             }
-            Axios.put('http://localhost:3001/update', dataUpdate , {headers: {'Content-Type': 'application/json'}}).then(alert(frstName + ' updated sucessfully'))
+            Axios.put('https://eventtrackingapp.herokuapp.com/update', dataUpdate , {headers: {'Content-Type': 'application/json'}}).then(alert(frstName + ' updated sucessfully'))
             window.location.reload()     
         }
 

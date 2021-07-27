@@ -3,13 +3,16 @@ const app = express()
 const cors = require ('cors')
 const mysql = require('mysql')
 
+//Database Configuration
 const db= mysql.createPool({
-    host: 'localhost',
-    port:3306,
-    user: 'root',
-    password: 'root',
-    database: 'Event_Tracking_DB'
+    host: 'us-cdbr-east-04.cleardb.com',
+    //port:3306,
+    user: 'b68bf25d7208e2',
+    password: 'ae147b18',
+    database: 'heroku_df9fec400578761'
 })
+//mysql://b68bf25d7208e2:ae147b18@us-cdbr-east-04.cleardb.com/heroku_df9fec400578761?reconnect=true
+
 
 app.use(cors())
 app.use(express.json())
@@ -321,6 +324,9 @@ app.get('/viewEventForAllPerson', (req, res)=>{
 // ----------------------------------------------- Calendar GET POST PUT DELETE ends------------------------------------------------
 
 //listen
-app.listen(3001, ()=>{
-    console.log("running on port 3001")
-}) 
+// app.listen(3001, ()=>{
+//     console.log("running on port 3001")
+// }) 
+app.listen(process.env.PORT || PORT, ()=>{
+        console.log("server running ")
+    }) 

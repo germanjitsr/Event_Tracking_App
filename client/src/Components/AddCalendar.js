@@ -18,7 +18,7 @@ export const AddCalendar = () => {
 
     //for list in Dropdown
     useEffect(()=>{
-       Axios.get('http://localhost:3001/viewE').then((response)=>{
+       Axios.get('https://eventtrackingapp.herokuapp.com/viewE').then((response)=>{
            //console.log(response.data)
            setEventList(response.data)
        })
@@ -35,7 +35,7 @@ export const AddCalendar = () => {
    const handleChange = e =>{
        //setFrstName(e.label) 
            //for filling up form
-       Axios.get('http://localhost:3001/view1E', { params: { event_name: (e.label)}}).then((response)=>{
+       Axios.get('https://eventtrackingapp.herokuapp.com/view1E', { params: { event_name: (e.label)}}).then((response)=>{
            setEvntID(response.data[0].event_id)
            const date = (response.data[0].event_date).slice(0,10);    
            setEvntName(response.data[0].event_name)
@@ -50,7 +50,7 @@ export const AddCalendar = () => {
 
         //for list
         useEffect(()=>{
-            Axios.get('http://localhost:3001/view').then((response)=>{
+            Axios.get('https://eventtrackingapp.herokuapp.com/view').then((response)=>{
                 //console.log(response.data)
                 setPeopleList1(response.data)
             })
@@ -66,7 +66,7 @@ export const AddCalendar = () => {
         const handleChangePerson = e =>{
             //setFrstName(e.label) 
                 //for filling up form
-            Axios.get('http://localhost:3001/view1', { params: { first_name: (e.label)}}).then((response)=>{
+            Axios.get('https://eventtrackingapp.herokuapp.com/view1', { params: { first_name: (e.label)}}).then((response)=>{
             setPrsonID(response.data[0].person_id)    
             setFrstName(response.data[0].first_name)
              })             
@@ -81,7 +81,7 @@ export const AddCalendar = () => {
        event_date: evntDate,
        person_id: prsonID
    }
-   const url = 'http://localhost:3001/addC'
+   const url = 'https://eventtrackingapp.herokuapp.com/addC'
    const headers = {'Content-Type': 'application/json'}
    const updateCalendar = () => {
        console.log("going for post")

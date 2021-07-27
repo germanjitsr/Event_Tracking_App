@@ -21,7 +21,7 @@ export const AddPerson = () => {
     
     const addPerson= () => {
 
-        const url = 'http://localhost:3001/add'
+        const url = 'https://eventtrackingapp.herokuapp.com/add'
         const data = {
             //ID will be created at backend
             first_name: firstName, 

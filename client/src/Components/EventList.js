@@ -9,7 +9,7 @@ export const EventList = () => {
     const [eventList, setEventList] = useState([])
 
     useEffect(()=>{
-        Axios.get('http://localhost:3001/viewE').then((response)=>{
+        Axios.get('https://eventtrackingapp.herokuapp.com/viewE').then((response)=>{
             setEventList(response.data)
         })
     },[])

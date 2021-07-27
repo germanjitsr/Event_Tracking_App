@@ -20,7 +20,7 @@ export const DeleteCalendar = () => {
 
     //for list in Dropdown
     useEffect(()=>{
-       Axios.get('http://localhost:3001/viewE').then((response)=>{
+       Axios.get('https://eventtrackingapp.herokuapp.com/viewE').then((response)=>{
            //console.log(response.data)
            setEventList(response.data)
        })
@@ -37,7 +37,7 @@ export const DeleteCalendar = () => {
    const handleChange = (e) =>{
        //setFrstName(e.label) 
            //for filling up form
-       Axios.get('http://localhost:3001/view1E', { params: { event_name: (e.label)}}).then((response)=>{
+       Axios.get('https://eventtrackingapp.herokuapp.com/view1E', { params: { event_name: (e.label)}}).then((response)=>{
            setEvntID(response.data[0].event_id)
            const date = (response.data[0].event_date).slice(0,10);    
            setEvntName(response.data[0].event_name)
@@ -54,7 +54,7 @@ export const DeleteCalendar = () => {
 
         const  handleChangePerson =  (e) =>{
             //alert(e)
-            Axios.get('http://localhost:3001/viewPersonPerEvent', { params: {'c_event_id': (e)}}).then((response)=>{
+            Axios.get('https://eventtrackingapp.herokuapp.com/viewPersonPerEvent', { params: {'c_event_id': (e)}}).then((response)=>{
                 setPeopleList2(response.data)
                 setPersonID(response.data)
             })        
@@ -78,7 +78,7 @@ export const DeleteCalendar = () => {
     const deleteCalendar  = (e) => {
         //alert(frstName)
         if(window.confirm('Are you sure?')){
-            Axios.delete('http://localhost:3001/deleteC/'+personName, { data: { "personName": {personName}}} , {headers: {
+            Axios.delete('https://eventtrackingapp.herokuapp.com/deleteC/'+personName, { data: { "personName": {personName}}} , {headers: {
             'Content-Type': 'application/json'
           }}).then(alert('Appointment updated for Event ' + evntName))
         }

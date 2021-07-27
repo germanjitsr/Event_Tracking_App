@@ -13,7 +13,7 @@ export const FamilyCalendar = () => {
   
    const handleChange = (date) =>{
         setDate(date)
-       Axios.get('http://localhost:3001/view2E', { params: { event_date: (date)}}).then((response)=>{
+       Axios.get('https://eventtrackingapp.herokuapp.com/view2E', { params: { event_date: (date)}}).then((response)=>{
         setEventList(response.data)
         })      
    }

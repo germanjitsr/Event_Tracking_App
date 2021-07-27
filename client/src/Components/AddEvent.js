@@ -16,7 +16,7 @@ export const AddEvent = () => {
 
     const addEvent= () => {
 
-        const url = 'http://localhost:3001/addE'
+        const url = 'https://eventtrackingapp.herokuapp.com/addE'
         const data = {
             //ID will be created at backend
             event_name: eventName, 
